@@ -29,10 +29,11 @@ router.post("/", adminOnly, uploadGallery.single("image"), async (req, res) => {
       featured: req.body.featured === "true",
       imageUrl: req.file.path,
       publicId: req.file.filename,
-      uploadedBy: req.user._id,
+     
     });
     res.status(201).json({ message: "Image uploaded successfully", gallery });
   } catch (err) {
+    console.log(err)
     res.status(500).json({ message: err.message });
   }
 });
