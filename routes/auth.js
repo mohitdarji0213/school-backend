@@ -14,6 +14,8 @@ const cookieOptions = {
 
 // Login
 router.post("/login", async (req, res) => {
+
+  console.log("lohin huva h ")
   try {
     const { email, password } = req.body;
     console.log(req.body);
@@ -26,6 +28,7 @@ router.post("/login", async (req, res) => {
       email !== process.env.ADMIN_EMAIL ||
       password !== process.env.ADMIN_PASSWORD
     ) {
+      console.log('match nhi huva data')
       return res.status(400).json({ message: "Invalid credentials" });
     }
     const token = jwt.sign(
@@ -33,7 +36,7 @@ router.post("/login", async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "7d" },
     );
-
+console.log('token bn gya hai')
     // Token ab cookie mein save ho raha hai — JSON mein nahi
     res.cookie("lbs_token", token, cookieOptions);
 
