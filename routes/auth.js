@@ -36,7 +36,7 @@ router.post("/login", async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "7d" },
     );
-console.log('token bn gya hai')
+console.log("token bn gya hai")
     // Token ab cookie mein save ho raha hai — JSON mein nahi
     res.cookie("lbs_token", token, cookieOptions);
 
