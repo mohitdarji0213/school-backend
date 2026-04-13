@@ -15,12 +15,12 @@ router.post("/", adminOnly, async (req, res) => {
   try {
     const data = req.body;
     data.totalFee =
-      (data.tuitionFee || 0) +
-      (data.admissionFee || 0) +
-      (data.examFee || 0) +
-      (data.sportsFee || 0) +
-      (data.computerFee || 0) +
-      (data.transportFee || 0);
+      (+data.tuitionFee || 0) +
+      (+data.admissionFee || 0) +
+      (+data.examFee || 0) +
+      (+data.sportsFee || 0) +
+      (+data.computerFee || 0) +
+      (+data.transportFee || 0);
     const fee = await Fee.create(data);
     res.status(201).json({ message: "Fee structure created", fee });
   } catch (err) {
